@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Whatcha Watchin'?</title>
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	  	<script> 
+  		$(document).ready(function(){  
+  			$("p").filter(".intro")
+             //$(selector).filter(criteria,function(index))
+                });
+
+
+
+		$(document).ready(function(){
+    
+    // when page loads, add a todo class for each <li> element (instead of adding them manually in the html document)
+    $('li').each(function(){
+        $(this).addClass('addMovie');
+        // add click events to all of the initial list items
+        addListEvents($(this));
+    });
+    // accepts a jQuery object and adds a click event to it
+    function addListEvents($li){
+	    // add a click event for each <li> element
+	    $li.click(function(){
+	        // remove the todo class and add done
+	        if ($(this).hasClass('addMovie') ) {      
+	            $(this).removeClass('addMovie');
+	            $(this).addClass('removeMovie');  
+	            // animate and remove the element from the dom
+	            $(this).slideUp(700,function(){
+	                console.log("Removed Movie");
+	                $(this).remove();
+	            });
+	            
+	        }
+	        // remove the done class and add todo
+	        else {
+	            $(this).removeClass('removeMovie').addClass('addMovie');
+	        }
+	    });
+	}
+   
+    // add new item
+    $('#addMovie-form').on('submit',function(event){
+    	// prevents the submit button from refreshing the page
+    	event.preventDefault();
+    	// create a new <li> element with the input value and add it to the list
+    	$('<li>'+ $('input:text').val() + '</li>')
+    		.addClass('addMovie')
+    		.appendTo('ul');
+    	// call our custom function with the newest list event to make sure it has a click event
+    	addListEvents($('li:last')); 
+    	// reset the input text
+    	$('input:text').val('');
+    });
+});
+    </script>
+
+
+
+
+
+    <link rel="stylesheet" href="home.css" media="screen">
+	<link rel="stylesheet" href="watch.css" media="screen">
+	<link rel="stylesheet" href="watched.css" media="screen">
+	<link rel="stylesheet" href="rewatch.css" media="screen">
+	<link rel="stylesheet" href="neverAgain.css" media="screen">
+
+
+<body>
+	
+
+
+
+
+
+	<div id= "container">
+		<h1>Whatcha Watchin'?</h1>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+
+
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#movieNavbar">
+						<span class="icon-bar red"></span>
+						<span class="icon-bar black"></span>
+						<span class="icon-bar red"></span>
+					</button>
+				</div>
+
+
+				<div class="collapse navbar-collapse" id="Navbar">
+					<ul class="nav navbar-nav ullist">
+						<li><a href="home.html">Home</a></li>
+						<li><a href="watch.html">Watch</a></li>
+						<li><a href="watched.html">Watched</a></li>
+						<li><a href="rewatch.html">ReWatch</a></li>
+						<li><a href="neverAgain.html">Never Again</a></li>
+					</ul>
+				</div>
+
+
+			</div>
+		</nav>
+
+	<!--filter button-->
+	<div id="filter-btn-container" class="filter">
+                <a id="filter-btn" href="#/filter" data-track="style click filter-btn" class="" style="opacity: 1;">
+                    <span>Filter</span>
+                    
+                </a>
+    </div>
+    	  <div id="wrapper">
+        <ul>     
+        </ul>
+		<form id="addMovie-form">
+        	<input type="text" id="description"/>
+        	<input type="submit" id="add" value="+"/>
+        </form>
+    </div>
+
+	</div>
+
+
+  
+
+
+</body>
+</head>
+</html>
