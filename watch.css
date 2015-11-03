@@ -1,0 +1,25 @@
+body{
+		background-color: black;
+}
+
+#bodylist{
+
+color: white;
+background-color: black;
+text-align: left;
+list-style-type: none;
+
+}
+
+h1{
+
+color: white;
+background-color: black;
+text-align: center;
+
+}
+
+#filter-btn{
+	padding-left: 50px;
+	color: yellow;
+}
