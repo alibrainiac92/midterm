@@ -6,116 +6,30 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="home.css" media="screen">
+	<link rel="stylesheet" href="watch.css" media="screen">
+<!-- 	<link rel="stylesheet" href="watched.css" media="screen">
+	<link rel="stylesheet" href="rewatch.css" media="screen">
+	<link rel="stylesheet" href="neverAgain.css" media="screen"> -->
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  	  	<script> 
-
-		$(document).ready(function(){
- 		var dummyJSON = {
-  				"movies":[{
-  					"title": "The Reanimator",
-  					"genre": "Horror"
-  				},
-  				{
-  					"title": "Magnolia",
-  					"genre": "Drama"
-  				}
-  				{
-  					"title": "Chocolate",
-  					"genre": "Drama/Action"
-  				}
-  				{
-  					"title": "The Raid Redemption",
-  					"genre": "Crime/Thriller"
-  				}
-  				{
-  					"title": "American Pie",
-  					"genre": "Romance/Comedy"
-  				}]
-  			};
-  		
-  		$("p").filter(".intro")
-        //$(selector).filter(criteria,function(index))  
-   
-
-    	$('li').each(function(){
-        	$(this).addClass('addMovie');
-        	addListEvents($(this));
-    	});
-
-    
-    function addListEvents($li){
-	    // add a click event for each <li> element
-	    $li.click(function(){
-	        // remove the todo class and add done
-	        if ($(this).hasClass('addMovie') ) {      
-	            $(this).removeClass('addMovie');
-	            $(this).addClass('removeMovie');  
-	            // animate and remove the element from the dom
-	            $(this).slideUp(500,function(){
-	                console.log("Removed Movie");
-	                $(this).remove();
-	            });
-	            
-	        }
-	        // remove the done class and add todo
-	        else {
-	            $(this).removeClass('removeMovie').addClass('addMovie');
-	        }
-	    });
-	}
-   
-    // add new item
-    $('#addMovie-form').on('submit',function(event){
-    	// prevents the submit button from refreshing the page
-    	event.preventDefault();
-    	// find a movie based on the input text
-    	var movie = findMovieByTitle($('input:text').val());
-    	console.log(movie);
-    	//console.log(movie);
-    	// create a new <li> element with the input value and add it to the list
-    	$('<li>'+ movie.title + '</li>')
-    		.addClass('addMovie')
-    		.appendTo('ul');
-    	// call our custom function with the newest list event to make sure it has a click event
-    	addListEvents($('li:last')); 
-    	// reset the input text
-    	$('input:text').val('');
-    });
-
-    // accepts a movie title and returns an object that has the same tittle
-    function findMovieByTitle(movieTitle){
-    	var movie;
-    	// loop through the movies and check if the titles are the same
-    	for( var i = 0; i < dummyJSON.movies.length; i++){
-    		if (dummyJSON.movies[i].title == movieTitle){
-    			console.log("match");
-    			movie = dummyJSON.movies[i];
-    		}
-    	}
-    	return movie;
-    }
-});
-    </script>
+  	
 
 
 
 
 
-    <link rel="stylesheet" href="home.css" media="screen">
-	<link rel="stylesheet" href="watch.css" media="screen">
-	<link rel="stylesheet" href="watched.css" media="screen">
-	<link rel="stylesheet" href="rewatch.css" media="screen">
-	<link rel="stylesheet" href="neverAgain.css" media="screen">
-
-
-
+</head>
 
 
 <body>
 
 	<div id= "container">
-		<h1>Whatcha Watchin'?</h1>
+		<div id= "bgd">
+			<a class="logo" href="home.html">
+				<img class="logo" src="images/movieSiteName.png" position: "center"/></a>
+			
+		</div>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 
@@ -126,6 +40,7 @@
 						<span class="icon-bar black"></span>
 						<span class="icon-bar red"></span>
 					</button>
+
 				</div>
 
 
@@ -142,20 +57,19 @@
 
 			</div>
 		</nav>
+	</div>
 
 	<!--filter button-->
-	<div id="filter-btn-container" class="filter">
+	<!-- <div id="filter-btn-container" class="filter">
                 <a id="filter-btn" href="#/filter" data-track="style click filter-btn" class="" style="opacity: 1;">
                     <span>Filter</span>
                     
                 </a>
 
+    </div> -->
 
-
-
-    </div>
     	<div id="wrapper">
-        	<ul>     
+        	<ul id="bodylist">     
         	</ul>
 			<form id="addMovie-form">
         		<input type="text" id="title"/>
@@ -238,6 +152,109 @@
   $('<li>'<img src="'PHOTO+'">'</li>);
 	^ find the complete code from GARVIN or on class website, FIX
 -->
+
+
+  	<script> 
+
+  	$(document).ready(function(){
+    	var dummyJSON = {
+  			"movies":[{
+  				"title": "The Reanimator",
+		     	"genre": "Horror",
+		     	"poster": "images/The Reanimator.jpg"
+		    },
+		    {
+		        "title": "Magnolia",
+		        "genre": "Drama",
+		        "poster": "images/Magnolia.jpg"
+		     
+		    },
+		    {
+		        "title": "Chocolate",
+		        "genre": "Drama/Action",
+		        "poster": "images/Chocolate.jpg"
+		      
+		    },
+		    {
+		        "title": "The Raid Redemption",
+		        "genre": "Crime/Thriller",
+		        "poster": "images/The Raid Redemption.jpg"
+		      
+		    },
+		    {
+		        "title": "American Pie",
+		        "genre": "Romance/Comedy",
+		        "poster": "images/American Pie.jpg"
+        
+  				}]
+  			};
+
+
+     $('li').each(function(){
+        $(this).addClass('addMovie');
+        // add click events to all of the initial list items
+        addListEvents($(this));
+    });
+    // accepts a jQuery object and adds a click event to it
+    function addListEvents($li){
+	    // add a click event for each <li> element
+	    $li.click(function(){
+	        // remove the todo class and add done
+	        if ($(this).hasClass('addMovie') ) {      
+	            $(this).removeClass('addMovie');
+	            $(this).addClass('removeMovie');  
+	            // animate and remove the element from the dom
+	         /*   $(this).slideUp(700,function(){
+	                console.log("Removed Movie");
+	                $(this).remove();
+	            });
+	            */
+	        }
+	        // remove the done class and add todo
+	        else {
+	            $(this).removeClass('removeMovie').addClass('addMovie');
+	        }
+	    });
+	}
+   
+    // add new item
+    $('#addMovie-form').on('submit',function(event){
+    	// prevents the submit button from refreshing the page
+    	event.preventDefault();
+    	// find a movie based on the input text
+    	var movie = findMovieByTitle($('input:text').val());
+    	console.log(movie);
+    	//console.log(movie);
+    	// create a new <li> element with the input value and add it to the list
+    	$('<li>'+ movie.title + '</li>')
+    		.addClass('addMovie')
+    		.appendTo('#bodylist');
+    	// call our custom function with the newest list event to make sure it has a click event
+    	addListEvents($('li:last')); 
+    	// reset the input text
+    	$('input:text').val('');
+    });
+
+    // accepts a movie title and returns an object that has the same tittle
+    function findMovieByTitle(movieTitle){
+    	var movie;
+    	// loop through the movies and check if the titles are the same
+    	for( var i = 0; i < dummyJSON.movies.length; i++){
+    		if (dummyJSON.movies[i].title == movieTitle){
+    			console.log("match");
+    			movie = dummyJSON.movies[i];
+    		}
+    	}
+    	return movie;
+    }
+});
+
+ 
+
+
+    </script>
+    
+
 </body>
-</head>
+
 </html>
